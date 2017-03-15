@@ -7,10 +7,11 @@ module BeReadonly
         # ActiveRecord::Base gets new behavior
         include BeReadonly::Model # ActiveSupport::Concern
         class ActiveRecord::Relation
-          def update_all(conditions = nil)
-            raise ActiveRecord::ReadOnlyRecord if BeReadonly.enabled
-            super
-          end
+          include BeReadonly::Model
+#           def update_all(conditions = nil)
+#             raise ActiveRecord::ReadOnlyRecord if BeReadonly.enabled
+#             super
+#           end
         end
       end
     end
