@@ -6,7 +6,7 @@ module BeReadonly
       ActiveSupport.on_load(:active_record) do
         # ActiveRecord::Base gets new behavior
         include BeReadonly::Model # ActiveSupport::Concern
-        module ActiveRecord::Relation
+        class Relation
           def update_all(conditions = nil)
             raise ActiveRecord::ReadOnlyRecord if BeReadonly.enabled
             super
